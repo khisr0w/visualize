@@ -1,0 +1,7 @@
+--recurse=yes
+--exclude=bin
+--exclude=.git
+--exclude=Makefile
+--exclude=LICENSE
+--exclude=*.md
+--c-kinds=+p
