@@ -23,12 +23,13 @@ typedef struct {
 } render_line;
 
 typedef struct {
-    vector2i screen_dim;
-    Vector2 screen_padding; // Essentially it defines the padding around the plot.
+    Color border_color;
+    Matrix to_main_region;
+    Vector2 padding;
 
     mem_arena *elements;
     i32 count;
-} render_group;
+} render_region;
 
 #define RENDER_H
 #endif

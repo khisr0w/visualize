@@ -50,11 +50,9 @@ typedef struct {
     Vector2 b;
 } range;
 
-#if 0
 internal inline f32
-abs(f32 value) { return (value < 0) ? -value : value; }
+abs_(f32 value) { return (value < 0) ? -value : value; }
 internal inline f32
-max(f32 first, f32 second) { return (first < second) ? second : first; }
+max_(f32 first, f32 second) { return (first < second) ? second : first; }
 internal inline i32
-round(f32 value) { return (i32)(value + 0.5f); }
-#endif
+round_(f32 value) { return (i32)(value + 0.5f); }
