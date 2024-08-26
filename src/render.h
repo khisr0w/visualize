@@ -10,6 +10,8 @@
 
 typedef enum {
     render_type_line,
+    render_type_text,
+    render_type_title,
 
     render_type_count,
 } render_type;
@@ -17,19 +19,31 @@ typedef enum {
 typedef struct {
     Vector2 start;
     Vector2 end;
-    Color color;
+    u32 hex_color;
     i32 thickness;
-
 } render_line;
 
 typedef struct {
-    Color border_color;
-    Matrix to_main_region;
-    Vector2 padding;
+    Vector2 position;
+    u32 hex_color;
+    f32 spacing;
+    Font *font;
+    usize text_length;
+    char *text;
+} render_text;
 
+typedef struct {
+    Matrix to_parent_axis;
     mem_arena *elements;
     i32 count;
-} render_region;
+    u32 hex_bc;
+    Vector2 parent_dim;
+    char *title;
+    bool adjust_lims;
+
+    range guide_limits;
+    Vector2 grid_stride;
+} axis;
 
 #define RENDER_H
 #endif

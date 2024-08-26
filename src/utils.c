@@ -54,5 +54,29 @@ internal inline f32
 abs_(f32 value) { return (value < 0) ? -value : value; }
 internal inline f32
 max_(f32 first, f32 second) { return (first < second) ? second : first; }
+internal inline f32
+min_(f32 first, f32 second) { return (first > second) ? second : first; }
 internal inline i32
 round_(f32 value) { return (i32)(value + 0.5f); }
+internal inline f32
+clamp(f32 value, f32 min, f32 max) {
+    value = (value < min) ? min : value;
+    value = (value > max) ? max : value;
+
+    return value;
+}
+internal inline Vector2
+vector2_clamp(Vector2 value, Vector2 min, Vector2 max) {
+    Vector2 result = {0};
+    result.x = clamp(value.x, min.x, max.x);
+    result.y = clamp(value.y, min.y, max.y);
+    return result;
+}
+
+internal usize
+str_length(char *string) {
+    usize result = 0;
+    while(*string++) ++result;
+
+    return result;
+}
