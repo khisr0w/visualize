@@ -58,10 +58,19 @@ i32 main() {
     f32 y_data[data_points];
     f32 x_data[data_points];
     f32 y_pow = 0.f;
+    f32 incr = 0.06f;
     for(u32 idx = 0; idx < data_points; ++idx) {
-        y_data[idx] = y_pow*sinf(idx * 0.1);
-        x_data[idx] = idx * 0.1;
-        y_pow += 0.03;
+        y_data[idx] = log(0.1 + idx * incr);
+        x_data[idx] = idx * incr;
+        y_pow += 0.01;
+    }
+    f32 y_data_c[data_points];
+    f32 x_data_c[data_points];
+    y_pow = 0.f;
+    for(u32 idx = 0; idx < data_points; ++idx) {
+        y_data_c[idx] = y_pow*cosf(idx * incr);
+        x_data_c[idx] = idx * incr;
+        y_pow += 0.01;
     }
 
     usize data_until = 0;
@@ -69,7 +78,8 @@ i32 main() {
         BeginDrawing(); {
             axis_draw_grids(&main_region);
             axis_plot(&main_region, x_data, y_data, data_until, ColorToInt(PURPLE));
-            axis_title(&main_region, "Main map plot", ColorToInt(BLUE), &font_40, 2);
+            axis_plot(&main_region, x_data_c, y_data_c, data_until, ColorToInt(LIME));
+            axis_title(&main_region, "Sine log plot superimposed", ColorToInt(BLUE), &font_40, 2);
 
             region_render(&main_region);
         }; EndDrawing();
